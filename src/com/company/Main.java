@@ -9,14 +9,15 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        int intentos = 0, num, numIntroducido, puntuacion = 0;
+        int intentos = 0, num, numIntroducido, puntuacion = 0, nivel = 1, dificultad = 0;
         String jugar, jugarMinus = "si";
 
-        num = (int)(1+Math.random()*99);
+        num = (int)(1+Math.random()*99 + dificultad);
 
         do {
             do {
-                JOptionPane.showMessageDialog(null,"Introduce un número para jugar:");
+                System.out.println("Estás en el nivel " + nivel);
+                System.out.println("Introduce un número para jugar:");
                 numIntroducido = input.nextInt();
                 intentos++;
                 if (numIntroducido < num && num != numIntroducido) {
@@ -68,8 +69,10 @@ public class Main {
             }while(!jugarMinus.equals("si") && !jugarMinus.equals("no"));
 
             if (jugarMinus.equals("si")){
+                nivel++;
+                dificultad = dificultad + 20;
                 intentos = 0;
-                num = (int)(1+Math.random()*99);
+                num = (int) (1 + Math.random() * (99 + dificultad));
             }
 
         }while(jugarMinus.equals("si"));
