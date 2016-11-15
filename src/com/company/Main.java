@@ -9,10 +9,12 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        int intentos = 0, num, numIntroducido, puntuacion = 0, nivel = 1, dificultad = 0;
+        int intentos = 0, num, numIntroducido, puntuacion = 100, nivel = 1, dificultad = 0;
         String jugar, jugarMinus = "si";
 
         num = (int)(1+Math.random()*99 + dificultad);
+
+        System.out.println("EL numero es: " + num);
 
         do {
             do {
@@ -20,6 +22,7 @@ public class Main {
                 System.out.println("Introduce un número para jugar:");
                 numIntroducido = input.nextInt();
                 intentos++;
+                puntuacion = puntuacion - (Math.abs(numIntroducido - num));
                 if (numIntroducido < num && num != numIntroducido) {
                     System.out.println("El número oculto es mayor al tuyo");
                 } else if (numIntroducido > num && num != numIntroducido) {
@@ -32,7 +35,7 @@ public class Main {
                 System.out.println("Lo has logrado en " + intentos + " intentos");
             }
 
-            switch(intentos){
+            /*switch(intentos){
                 case 1:
                     puntuacion = puntuacion + 10;
                     break;
@@ -54,7 +57,7 @@ public class Main {
                 default:
                     puntuacion = puntuacion - 2;
                     break;
-            }
+            }*/
 
             System.out.println("==================");
             System.out.printf("= ");
