@@ -9,12 +9,10 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        int intentos = 0, num, numIntroducido, puntuacion = 100, nivel = 1, dificultad = 0;
-        String jugar, jugarMinus = "si";
+        int intentos = 0, num, numIntroducido, puntuacion = 0, nivel = 1, dificultad = 0, vidas = 10;
+        String jugar, jugarMinus = "valor";
 
         num = (int)(1+Math.random()*99 + dificultad);
-
-        System.out.println("EL numero es: " + num);
 
         do {
             do {
@@ -22,54 +20,37 @@ public class Main {
                 System.out.println("Introduce un número para jugar:");
                 numIntroducido = input.nextInt();
                 intentos++;
-                puntuacion = puntuacion - (Math.abs(numIntroducido - num));
-                if (numIntroducido < num && num != numIntroducido) {
+                puntuacion = puntuacion + (100 - (Math.abs(numIntroducido - num)));
+                vidas--;
+                if (numIntroducido < num && num != numIntroducido && vidas > 0) {
                     System.out.println("El número oculto es mayor al tuyo");
-                } else if (numIntroducido > num && num != numIntroducido) {
+                } else if (numIntroducido > num && num != numIntroducido && vidas > 0) {
                     System.out.println("El número oculto es menor al tuyo");
                 }
-            } while (num != numIntroducido);
+            } while (num != numIntroducido && vidas > 0);
 
-            if (num==numIntroducido){
+            if (num==numIntroducido) {
+                vidas++;
                 System.out.println("Enhorabuena!");
                 System.out.println("Lo has logrado en " + intentos + " intentos");
+                System.out.println("==================");
+                System.out.printf("= ");
+                System.out.printf("Puntuación: " + puntuacion);
+                System.out.printf("  = \n");
+                System.out.println("==================");
             }
 
-            /*switch(intentos){
-                case 1:
-                    puntuacion = puntuacion + 10;
-                    break;
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                    puntuacion = puntuacion + 5;
-                    break;
-                case 6:
-                case 7:
-                    puntuacion = puntuacion + 2;
-                    break;
-                case 8:
-                case 9:
-                case 10:
-                    puntuacion = puntuacion + 1;
-                    break;
-                default:
-                    puntuacion = puntuacion - 2;
-                    break;
-            }*/
-
-            System.out.println("==================");
-            System.out.printf("= ");
-            System.out.printf("Puntuación: " + puntuacion);
-            System.out.printf("  = \n");
-            System.out.println("==================");
-
-            do{
+            while(!jugarMinus.equals("si") && !jugarMinus.equals("no") && vidas > 0){
                 System.out.println("Desea volver a jugar? (si/no)");
                 jugar = input.next();
                 jugarMinus = jugar.toLowerCase();
-            }while(!jugarMinus.equals("si") && !jugarMinus.equals("no"));
+            }
+
+            /*do{
+                System.out.println("Desea volver a jugar? (si/no)");
+                jugar = input.next();
+                jugarMinus = jugar.toLowerCase();
+            }while(!jugarMinus.equals("si") && !jugarMinus.equals("no"));*/
 
             if (jugarMinus.equals("si")){
                 nivel++;
@@ -82,6 +63,10 @@ public class Main {
 
         if (jugarMinus.equals("no")){
             System.out.println("Espero que te hayas divertido. Hasta pronto!");
+        }
+
+        if (vidas == 0){
+            System.out.println("Ohhhh... Se te han acabado los intentos :(");
         }
 
     }
