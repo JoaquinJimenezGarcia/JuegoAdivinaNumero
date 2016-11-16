@@ -10,10 +10,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(in);
-        Icon sharapova = new ImageIcon("/com.company/sharapova.jpg");
+        //Scanner input = new Scanner(in);
+        Icon sharapova = new ImageIcon("/Users/joaquinjimenezgarcia/Google Drive/DAW/Programación/Java/JuegoAdivinaNumero/src/com/company/sharapova.jpg");
 
-        int intentos = 0, num, numIntroducido, puntuacion = 100, nivel = 1, dificultad = 0, vidas = 3;
+        int intentos = 0, num, numIntroducido, puntuacion = 100, nivel = 1, dificultad = 0, vidas = 10;
         String jugar, jugarMinus = "valor";
 
         num = (int)(1+Math.random()*99 + dificultad);
@@ -45,7 +45,8 @@ public class Main {
                 System.out.printf("Puntuación: " + puntuacion);
                 System.out.printf("  = \n");
                 System.out.println("==================");*/
-                JOptionPane.showMessageDialog(null,"Enhorabuena! Lo has logrado en "+intentos+" intentos" + "\n"+"Puntuación: "+puntuacion);
+                JOptionPane.showMessageDialog(null,"Enhorabuena! Lo has logrado en "+intentos+" intentos" + "\n"+"Puntuación de ronda: "+puntuacion);
+                jugarMinus = "valor";
             }
 
             while(!jugarMinus.equals("si") && !jugarMinus.equals("no") && vidas > 0){
@@ -66,6 +67,7 @@ public class Main {
                 nivel++;
                 dificultad = dificultad + 20;
                 intentos = 0;
+                puntuacion = 100;
                 num = (int) (1 + Math.random() * (99 + dificultad));
             }
 
