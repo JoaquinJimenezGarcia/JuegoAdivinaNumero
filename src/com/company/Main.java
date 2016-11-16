@@ -12,11 +12,14 @@ public class Main {
 
         //Scanner input = new Scanner(in);
         Icon sharapova = new ImageIcon("/Users/joaquinjimenezgarcia/Google Drive/DAW/Programación/Java/JuegoAdivinaNumero/src/com/company/sharapova.jpg");
+        Icon bienvenida = new ImageIcon("/Users/joaquinjimenezgarcia/Google Drive/DAW/Programación/Java/JuegoAdivinaNumero/src/com/company/bienvenida.jpg");
 
         int intentos = 0, num, numIntroducido, puntuacion = 100, nivel = 1, dificultad = 0, vidas = 10;
         String jugar, jugarMinus = "valor";
 
         num = (int)(1+Math.random()*99 + dificultad);
+
+        JOptionPane.showMessageDialog(null, "Bienvenido al juego de adivinar números. Debes de ir insertando números hasta acertar. \n Mientras menos intentos hagas, mejor puntuación recibirás.", "Bienvenido", JOptionPane.WARNING_MESSAGE,bienvenida);
 
         do {
             do {
